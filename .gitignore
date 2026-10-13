@@ -14,10 +14,6 @@ checkpoints_union/*
 data/*
 !data/README.md
 
-# Rendered figures (regenerate with figures/*.py)
-figures/output/*
-!figures/output/.gitkeep
-
 # Manuscript HTML is not part of the code release
 manuscript/*
 !manuscript/.gitkeep

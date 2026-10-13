@@ -8,13 +8,11 @@ from scipy.stats import wilcoxon
 # --- repository path bootstrap (added for the public release) -----------
 _HERE = os.path.dirname(os.path.abspath(__file__))
 _ROOT = os.path.dirname(_HERE)
-for _p in (os.path.join(_ROOT, "src"), os.path.join(_ROOT, "analysis"),
-           os.path.join(_ROOT, "figures"), _HERE):
+for _p in (os.path.join(_ROOT, "src"), os.path.join(_ROOT, "analysis"), _HERE):
     if _p not in sys.path:
         sys.path.insert(0, _p)
 
 
-sys.path.insert(0, os.path.join(_ROOT, "results"))
 import _summarize_runs as S
 
 EXPD = os.path.join(_ROOT, "experiments") + os.sep

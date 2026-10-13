@@ -27,7 +27,7 @@ pipe05_ci.py — 记录级 Bootstrap CI 后处理 (独立脚本, 不改动 pipe0
   DB_foldmean 因各种子测试集不同, 各种子独立重采样后逐迭代取均值。
 
 用法:
-  python pipe05_ci.py                    # 默认扫描 R1 10-seed 目录 (P1CI_P6eff050_seed*_20260903_*)
+  python pipe05_ci.py                    # 默认扫描主线 10-seed 目录 (P1CI_P6eff050_direct_seed*_*)
   python pipe05_ci.py <dir1> [dir2 ...]  # 显式指定含 pipe_03_sfs_*.pkl 的实验目录
 
 输出:
@@ -49,8 +49,7 @@ from sklearn.model_selection import StratifiedGroupKFold
 # --- repository path bootstrap (added for the public release) -----------
 _HERE = os.path.dirname(os.path.abspath(__file__))
 _ROOT = os.path.dirname(_HERE)
-for _p in (os.path.join(_ROOT, "src"), os.path.join(_ROOT, "analysis"),
-           os.path.join(_ROOT, "figures"), _HERE):
+for _p in (os.path.join(_ROOT, "src"), os.path.join(_ROOT, "analysis"), _HERE):
     if _p not in sys.path:
         sys.path.insert(0, _p)
 
@@ -74,8 +73,8 @@ BOOT_SEED_DS = 43       # DS 共享索引流 (26 条, 与 OOF 流独立)
 FOLD_RNG_SEED = 42      # fold-wise bootstrap 每种子独立流
 AUC_TOL = 1e-9
 
-EXP_ROOT = os.path.join(BASE_DIR, "experiments")
-DEFAULT_GLOB = os.path.join(EXP_ROOT, "P1CI_P6eff050_seed*_20260903_*")
+EXP_ROOT = os.path.join(_ROOT, "experiments")
+DEFAULT_GLOB = os.path.join(EXP_ROOT, "P1CI_P6eff050_direct_seed*_*")
 
 
 def ts():

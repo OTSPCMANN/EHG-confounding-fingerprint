@@ -29,8 +29,7 @@ from sklearn.linear_model import LogisticRegression
 # --- repository path bootstrap (added for the public release) -----------
 _HERE = os.path.dirname(os.path.abspath(__file__))
 _ROOT = os.path.dirname(_HERE)
-for _p in (os.path.join(_ROOT, "src"), os.path.join(_ROOT, "analysis"),
-           os.path.join(_ROOT, "figures"), _HERE):
+for _p in (os.path.join(_ROOT, "src"), os.path.join(_ROOT, "analysis"), _HERE):
     if _p not in sys.path:
         sys.path.insert(0, _p)
 
@@ -647,7 +646,7 @@ def stage3_sfs(exp_dir, tag, pool_data, ALL_COLS):
     # 注意: DS 的女性(cluster)必须用 tpehgt_ds_mother_map.csv, recname 前缀 pNNN/tNNN 是 13+13, 不能用来推断
     try:
         _mm = pd.read_csv(os.path.join(
-            BASE_DIR, "checkpoints_lit_features_v2", "tpehgt_ds_mother_map.csv"))
+            _ROOT, "results", "checkpoints_lit_features_v2", "tpehgt_ds_mother_map.csv"))
         _mid = _mm.set_index("recname")["mother_id"].reindex(
             ds.recname.astype(str).values)
         if _mid.isna().any():

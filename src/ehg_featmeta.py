@@ -32,8 +32,7 @@ import os
 # --- repository path bootstrap (added for the public release) -----------
 _HERE = os.path.dirname(os.path.abspath(__file__))
 _ROOT = os.path.dirname(_HERE)
-for _p in (os.path.join(_ROOT, "src"), os.path.join(_ROOT, "analysis"),
-           os.path.join(_ROOT, "figures"), _HERE):
+for _p in (os.path.join(_ROOT, "src"), os.path.join(_ROOT, "analysis"), _HERE):
     if _p not in sys.path:
         sys.path.insert(0, _p)
 
@@ -41,7 +40,7 @@ for _p in (os.path.join(_ROOT, "src"), os.path.join(_ROOT, "analysis"),
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 
 # ==================== 路径 ====================
-OUT_DIR = os.path.join(BASE_DIR, "checkpoints_lit_features_v2")
+OUT_DIR = os.path.join(_ROOT, "results", "checkpoints_lit_features_v2")
 FT_CSV = os.path.join(OUT_DIR, "lit_features_v2.csv")
 FID_CSV = os.path.join(OUT_DIR, "feature_id_map.csv")
 

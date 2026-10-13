@@ -27,13 +27,12 @@ features (`cv_vert`, `cv_horiz`, `hv_ratio`).
 
 ```text
 src/                 core pipeline (data union -> feature extraction -> staged runner)
-figures/             figure generators (Figures 3-9) and shared plotting helpers
-analysis/            post-hoc analyses behind the tables and robustness panels
-results/             derived feature tables and the aggregated CSV results consumed by figures
+analysis/            post-hoc analyses and shared summary helpers behind the tables
+results/             derived feature tables and the aggregated CSV result exports
 assets/              Figure 1 source (hand-drawn SVG)
 data/                placeholder - the raw public datasets are downloaded, not shipped
 docs/                reproducibility notes
-manuscript/          placeholder for the HTML file referenced by the figure scripts
+manuscript/          placeholder (empty in the repository)
 experiments/         output root of src/run_experiment.py (empty in the repository)
 checkpoints_union/   intermediate cache root (empty in the repository; recreated on the first run)
 ```
@@ -69,21 +68,21 @@ python src/run_experiment.py P1CI_P6eff050 42          # one outer seed of the m
 Positional arguments are `<config-tag> [outer-seed] [lead-split]`;
 `python src/run_experiment.py` with no arguments prints the 15 available config tags.
 
-### Figure and table generators
+### Figure and table data exports
 
-| Paper item | Script | Consumes |
+The figures in the manuscript were drawn manually from the exported tables below.
+This release ships the computation that produces those tables, not the drawing code.
+
+| Paper item | Exported data | Produced by |
 | --- | --- | --- |
-| Table 4 / Figure 3 | `figures/make_fig3_final.py` | `results/checkpoints_lit_features_v3/pair_auc_matrix.csv` |
-| Figure 4 | `figures/make_figs_4to9.py` (`fig4_roc_build` then `fig4_roc`) | `experiments/` + `results/checkpoints_lit_features_v2/tpehgt_ds_mother_map.csv` |
-| Figure 5 | `figures/make_figs_4to9.py` (`fig5`) | `results/v3_eps_full_summary_20260924.csv` |
-| Figure 6 | `figures/make_figs_4to9.py` (`fig6`) | `experiments/` (per-seed `pipe_03_sfs_*.xlsx`) |
-| Figure 7 | `figures/make_figs_4to9.py` (`fig7`) | `results/v3_runs_summary.csv`, `results/v3_clsummary_20260927.csv` |
-| Figure 8 | `figures/make_figs_4to9.py` (`fig8`) | `experiments/` (per-seed `pipe_03_sfs_*.xlsx`) |
-| Figure 9 | `figures/make_figs_4to9.py` (`fig9`) | `results/v3_dims_D2D3D4_20260927.csv` |
+| Table 4 / Figure 3 | `results/checkpoints_lit_features_v3/pair_auc_matrix.csv` | `src/EHG_lit_features.py` |
+| Figure 4 (ROC) | per-seed outputs under `experiments/` + `results/checkpoints_lit_features_v2/tpehgt_ds_mother_map.csv` | `src/run_experiment.py` |
+| Figure 5 (epsilon sweep) | `results/v3_eps_full_summary_20260924.csv` | shipped as-is (see Known gaps) |
+| Figure 6 (admission criteria) | per-seed `experiments/**/pipe_03_sfs_*.xlsx` | `src/run_experiment.py` |
+| Figure 7 (classifier family) | `results/v3_runs_summary.csv`, `results/v3_clsummary_20260927.csv` | `analysis/_summarize_runs.py`, `analysis/_summarize_cl.py` |
+| Figure 8 (reference scale) | per-seed `experiments/**/pipe_03_sfs_*.xlsx`, `results/v3_insample_20260927.csv` | `src/run_experiment.py`, `analysis/_r44_insample.py` |
+| Figure 9 (clinical strata) | `results/v3_dims_D2D3D4_20260927.csv` | `analysis/_r45_dims.py` |
 | Figure 1 | `assets/fig1_framework.svg` | hand-drawn SVG (no generator) |
-
-Figures are written to `figures/output/`. Figure 3 also exports
-`Fig3_fingerprint_wide.csv` and `Fig3_fingerprint_long.csv` for manual redrawing.
 
 ### Analyses (`analysis/`)
 
@@ -98,15 +97,15 @@ Figures are written to `figures/output/`. Figure 3 also exports
 | `_r45_gold.py`, `_r45_gold_diag.py` | Goldsztejn-style sub-cohort re-analysis |
 | `_cl_dispersion.py` | Ensemble-vs-family dispersion comparison |
 | `_summarize_cl.py` | `results/v3_clsummary_*.csv` |
-| `figures/_summarize_runs.py` | `results/v3_runs_summary.csv` |
+| `_summarize_runs.py` | `results/v3_runs_summary.csv` |
+| `pipe05_ci.py` | `experiments/CI_<tag>_<n>runs_<timestamp>/bootstrap_ci_summary.xlsx` (record-level bootstrap intervals) |
 
 ## Data
 
 The raw datasets are public but are **not** redistributed here. See
 [data/README.md](data/README.md) for download links and the directory layout the
-scripts expect. The derived feature tables under `results/` are shipped so that
-Figures 3, 5, 7 and 9 and the accompanying tables can be reproduced without the
-raw signals.
+scripts expect. The derived feature tables under `results/` are shipped so that the reported
+tables and the figure data can be checked without the raw signals.
 
 ## Environment
 
@@ -130,10 +129,17 @@ pip install -r requirements.txt
    ```
    (any Python with the dependencies works; on Windows PowerShell see
    [docs/reproducibility.md](docs/reproducibility.md)).
-4. Regenerate the figures and tables:
+4. Regenerate the exported tables behind the figures and manuscript tables
+   (the summary scripts read the per-seed outputs written in step 3):
+
    ```bash
-   python figures/make_fig3_final.py
-   python figures/make_figs_4to9.py
+   python analysis/pipe05_ci.py            # record-level bootstrap intervals
+   python analysis/_summarize_runs.py      # per-configuration run summary
+   python analysis/_summarize_cl.py        # classifier-family summary
+   python analysis/_r41_fingerprint.py     # fingerprint table
+   python analysis/_r42_uncertainty.py     # ROC and uncertainty exports
+   python analysis/_r44_insample.py        # reference-scale levels
+   python analysis/_r45_dims.py            # D2-D4 exports
    ```
 
 See [docs/reproducibility.md](docs/reproducibility.md) for the exact seeds,
@@ -142,13 +148,18 @@ by the shipped scripts.
 
 ## Known gaps
 
+- **Figure drawing code is not included.** Every manuscript figure was drawn
+  manually from the exported CSV tables listed above.
 - **Figure 2** (dataset overview) has no generator script in this repository.
 - **Figure 1** is a hand-drawn SVG (`assets/fig1_framework.svg`), not generated from data.
 - **Figures 4, 6 and 8** read per-seed outputs under `experiments/`, which are
   produced by `src/run_experiment.py` and are not shipped (they are large).
 - `results/v3_eps_full_summary_20260924.csv` (Figure 5) has no generator script in
   this repository; the pre-computed summary is shipped as-is.
-- The manuscript HTML consumed by the figure scripts is not included.
+- `results/checkpoints_lit_features_v2/lit_features_v2.csv` (the 75-feature v2 pool)
+  is not shipped, so `analysis/_r45_gold.py` and `analysis/_r45_gold_diag.py` cannot
+  run unmodified.
+- The manuscript HTML is not included.
 
 ## License
 
