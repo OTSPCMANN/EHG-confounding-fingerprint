@@ -1,0 +1,176 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1120 700" role="img" aria-label="Four-dimension evaluation framework" style="width:100%; max-width:1000px; height:auto; font-family:'Times New Roman', Times, serif;">
+  <title>Four-dimension evaluation framework for trustworthy EHG preterm-birth prediction</title>
+  <desc>D1 is a feature-admission procedure; D2 to D4 are reporting requirements applied to the resulting AUC.</desc>
+
+  <!-- ==================== column headers ==================== -->
+  <rect x="16" y="14" width="330" height="30" rx="15" fill="#dce8f6" stroke="#4a6fa5" stroke-width="1.4"/>
+  <text x="181" y="34" text-anchor="middle" font-size="14" font-weight="bold" fill="#1f4e79">D1 &#183; Feature admission</text>
+  <rect x="356" y="14" width="118" height="30" rx="15" fill="#ffffff" stroke="#4a6fa5" stroke-width="1.2"/>
+  <text x="415" y="34" text-anchor="middle" font-size="11.5" fill="#4a6fa5">procedure</text>
+
+  <rect x="688" y="14" width="416" height="30" rx="15" fill="#fbf3dc" stroke="#c9a227" stroke-width="1.4"/>
+  <text x="896" y="34" text-anchor="middle" font-size="14" font-weight="bold" fill="#7a5c10">D2&#8211;D4 &#183; Reporting requirements</text>
+
+  <!-- ==================== D1 procedure ==================== -->
+  <g id="D1-procedure">
+    <rect x="16" y="54" width="648" height="470" rx="12" fill="#f8fbfe" stroke="#e4ecf6" stroke-width="1.2"/>
+
+    <!-- step 1: candidate pool -->
+    <rect x="40" y="68" width="600" height="60" rx="8" fill="#eef3f8" stroke="#4a6fa5" stroke-width="1.5"/>
+    <g transform="translate(56,80)">
+      <path d="M0,0 H26 L16,12 V25 H10 V12 Z" fill="#cfe0f2" stroke="#4a6fa5" stroke-width="1.2" stroke-linejoin="round"/>
+    </g>
+    <text x="96" y="96" font-size="13" font-weight="bold" fill="#223">Candidate feature pool</text>
+    <text x="96" y="116" font-size="11.5" fill="#556">input to the admission procedure</text>
+
+    <line x1="340" y1="128" x2="340" y2="141" stroke="#555" stroke-width="1.8"/>
+    <polygon points="335,137 345,137 340,147" fill="#555"/>
+
+    <!-- step 2: paired design -->
+    <rect x="40" y="146" width="600" height="78" rx="8" fill="#eef3f8" stroke="#4a6fa5" stroke-width="1.5"/>
+    <g transform="translate(56,166)">
+      <circle cx="6" cy="7" r="3.4" fill="#4a6fa5"/><circle cx="6" cy="22" r="3.4" fill="#4a6fa5"/>
+      <circle cx="22" cy="7" r="3.4" fill="#e08b4a"/><circle cx="22" cy="22" r="3.4" fill="#e08b4a"/>
+      <line x1="9.5" y1="7" x2="18.5" y2="7" stroke="#9db6d4" stroke-width="1.3"/>
+      <line x1="9.5" y1="22" x2="18.5" y2="22" stroke="#9db6d4" stroke-width="1.3"/>
+    </g>
+    <text x="96" y="176" font-size="13" font-weight="bold" fill="#223">Paired-discrimination design</text>
+    <text x="96" y="196" font-size="11.5" fill="#556">four subgroups G1&#8211;G4 &#183; six pairings P1&#8211;P6</text>
+    <text x="96" y="215" font-size="11.5" fill="#556">confounder = recording GA &#183; label = preterm status</text>
+
+    <line x1="340" y1="224" x2="340" y2="237" stroke="#555" stroke-width="1.8"/>
+    <polygon points="335,233 345,233 340,243" fill="#555"/>
+
+    <!-- step 3: two-level gate -->
+    <rect x="40" y="242" width="600" height="116" rx="8" fill="#dfe9f5" stroke="#4a6fa5" stroke-width="1.8"/>
+    <g transform="translate(56,254)">
+      <path d="M13,0 L26,5 V14 C26,21 20,25 13,28 C6,25 0,21 0,14 V5 Z" fill="#dce8f6" stroke="#1f4e79" stroke-width="1.3"/>
+      <path d="M7,13.5 L11.5,18.5 L19,8.5" fill="none" stroke="#1f4e79" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"/>
+    </g>
+    <text x="96" y="264" font-size="13.5" font-weight="bold" fill="#1f4e79">Two-level admission gate</text>
+    <line x1="96" y1="274" x2="620" y2="274" stroke="#9db6d4" stroke-width="1"/>
+    <rect x="96" y="284" width="98" height="18" rx="9" fill="#c7d8ec" stroke="#4a6fa5" stroke-width="1"/>
+    <text x="145" y="297" text-anchor="middle" font-size="10.5" fill="#1f4e79">Positive level</text>
+    <text x="206" y="297" font-size="11.5" fill="#334">P1&#8211;P4: 95% CI excludes 0.5 and directions agree</text>
+    <rect x="96" y="306" width="98" height="18" rx="9" fill="#c7d8ec" stroke="#4a6fa5" stroke-width="1"/>
+    <text x="145" y="319" text-anchor="middle" font-size="10.5" fill="#1f4e79">Reverse level</text>
+    <text x="206" y="319" font-size="11.5" fill="#334">P6: |AUC &#8722; 0.5| &lt; &#949; = 0.05 (proxy test)</text>
+    <text x="96" y="341" font-size="10.5" fill="#667">&#949; pre-specified &#183; both levels recomputed inside every training fold</text>
+
+    <line x1="340" y1="358" x2="340" y2="371" stroke="#555" stroke-width="1.8"/>
+    <polygon points="335,367 345,367 340,377" fill="#555"/>
+
+    <!-- step 4: admitted subset -->
+    <rect x="40" y="376" width="600" height="58" rx="8" fill="#eef3f8" stroke="#4a6fa5" stroke-width="1.5"/>
+    <g transform="translate(56,390)">
+      <circle cx="13" cy="13" r="12" fill="#dce8f6" stroke="#4a6fa5" stroke-width="1.3"/>
+      <path d="M7,13 L11.5,18 L19,8" fill="none" stroke="#4a6fa5" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"/>
+    </g>
+    <text x="96" y="398" font-size="13" font-weight="bold" fill="#223">Admitted subset</text>
+    <text x="96" y="417" font-size="11.5" fill="#556">feeds the ensemble classifier</text>
+
+    <line x1="340" y1="434" x2="340" y2="447" stroke="#555" stroke-width="1.8"/>
+    <polygon points="335,443 345,443 340,453" fill="#555"/>
+
+    <!-- step 5: primary estimate -->
+    <rect x="40" y="452" width="600" height="52" rx="8" fill="#dce8f6" stroke="#4a6fa5" stroke-width="1.8"/>
+    <g transform="translate(56,464)">
+      <rect x="0" y="12" width="6" height="12" rx="1.5" fill="#6f96c4"/>
+      <rect x="10" y="6" width="6" height="18" rx="1.5" fill="#4a6fa5"/>
+      <rect x="20" y="0" width="6" height="24" rx="1.5" fill="#1f4e79"/>
+    </g>
+    <text x="96" y="483" font-size="13.5" font-weight="bold" fill="#1f4e79">Record-level out-of-fold AUC</text>
+  </g>
+
+  <!-- ==================== D2-D4 reporting ==================== -->
+  <g id="D2-D4-reporting">
+    <rect x="688" y="54" width="416" height="506" rx="12" fill="#fdfbf3" stroke="#eee5cd" stroke-width="1.2"/>
+
+    <!-- D2 -->
+    <rect x="704" y="68" width="384" height="140" rx="8" fill="#fff6e6" stroke="#c9a227" stroke-width="1.5"/>
+    <g transform="translate(716,84)">
+      <rect x="0" y="0" width="20" height="26" rx="4" fill="#f0e0b8" stroke="#c9a227" stroke-width="1.2"/>
+      <rect x="12" y="0" width="20" height="26" rx="4" fill="#e3cc93" stroke="#c9a227" stroke-width="1.2"/>
+      <circle cx="6" cy="8" r="2.4" fill="#8a6d1f"/><circle cx="6" cy="17" r="2.4" fill="#8a6d1f"/>
+      <circle cx="26" cy="8" r="2.4" fill="#8a6d1f"/><circle cx="26" cy="17" r="2.4" fill="#8a6d1f"/>
+    </g>
+    <text x="756" y="94" font-size="13.5" font-weight="bold" fill="#7a5c10">D2 &#183; Cohort origin</text>
+    <line x1="716" y1="108" x2="1076" y2="108" stroke="#e3d3a6" stroke-width="1"/>
+    <text x="716" y="130" font-size="11.5" fill="#334">Diagnostic: a binary indicator of cohort membership</text>
+    <text x="716" y="149" font-size="11.5" fill="#334">(development vs. external validation cohort) scored</text>
+    <text x="716" y="168" font-size="11.5" fill="#334">by AUC, with no EHG signal involved</text>
+    <text x="716" y="192" font-size="11" fill="#1f5c33">Action: block cohort source and report cross-cohort transfer</text>
+
+    <!-- D3 -->
+    <rect x="704" y="224" width="384" height="140" rx="8" fill="#fff6e6" stroke="#c9a227" stroke-width="1.5"/>
+    <g transform="translate(716,240)">
+      <circle cx="13" cy="13" r="12" fill="#f0e0b8" stroke="#c9a227" stroke-width="1.3"/>
+      <line x1="13" y1="13" x2="13" y2="6" stroke="#8a6d1f" stroke-width="1.7" stroke-linecap="round"/>
+      <line x1="13" y1="13" x2="18" y2="15" stroke="#8a6d1f" stroke-width="1.7" stroke-linecap="round"/>
+    </g>
+    <text x="756" y="250" font-size="13.5" font-weight="bold" fill="#7a5c10">D3 &#183; Recording-gestation baseline</text>
+    <line x1="716" y1="264" x2="1076" y2="264" stroke="#e3d3a6" stroke-width="1"/>
+    <text x="716" y="286" font-size="11.5" fill="#334">Diagnostic: single-variable AUC of recording</text>
+    <text x="716" y="305" font-size="11.5" fill="#334">gestational age on the same records</text>
+    <text x="716" y="329" font-size="11" fill="#1f5c33">Action: report this baseline beside every model AUC</text>
+    <text x="716" y="350" font-size="10.5" fill="#667">guards against a gestational-age proxy</text>
+
+    <!-- D4 -->
+    <rect x="704" y="380" width="384" height="166" rx="8" fill="#fff6e6" stroke="#c9a227" stroke-width="1.5"/>
+    <g transform="translate(716,396)">
+      <rect x="0" y="0" width="26" height="7" rx="2" fill="#f0e0b8" stroke="#c9a227" stroke-width="1.1"/>
+      <rect x="0" y="9" width="26" height="7" rx="2" fill="#e3cc93" stroke="#c9a227" stroke-width="1.1"/>
+      <rect x="0" y="18" width="26" height="7" rx="2" fill="#d8bd7a" stroke="#c9a227" stroke-width="1.1"/>
+    </g>
+    <text x="756" y="406" font-size="13.5" font-weight="bold" fill="#7a5c10">D4 &#183; Clinical-strata decomposition</text>
+    <line x1="716" y1="420" x2="1076" y2="420" stroke="#e3d3a6" stroke-width="1"/>
+    <text x="716" y="442" font-size="11.5" fill="#334">Diagnostic: a single pooled &lt;37-week AUC hides</text>
+    <text x="716" y="461" font-size="11.5" fill="#334">which preterm stratum drives performance</text>
+    <text x="716" y="484" font-size="11" fill="#1f5c33">Action: report AUC per stratum</text>
+    <rect x="716" y="496" width="68" height="26" rx="6" fill="#f0f5ef" stroke="#7ba07a" stroke-width="1.1"/>
+    <text x="750" y="513" text-anchor="middle" font-size="11" fill="#2c5330">&lt;28</text>
+    <rect x="792" y="496" width="68" height="26" rx="6" fill="#f0f5ef" stroke="#7ba07a" stroke-width="1.1"/>
+    <text x="826" y="513" text-anchor="middle" font-size="11" fill="#2c5330">28&#8211;34</text>
+    <rect x="868" y="496" width="68" height="26" rx="6" fill="#f0f5ef" stroke="#7ba07a" stroke-width="1.1"/>
+    <text x="902" y="513" text-anchor="middle" font-size="11" fill="#2c5330">34&#8211;37</text>
+    <rect x="944" y="496" width="68" height="26" rx="6" fill="#f0f5ef" stroke="#7ba07a" stroke-width="1.1"/>
+    <text x="978" y="513" text-anchor="middle" font-size="11" fill="#2c5330">37&#8211;41</text>
+    <rect x="1020" y="496" width="68" height="26" rx="6" fill="#f0f5ef" stroke="#7ba07a" stroke-width="1.1"/>
+    <text x="1054" y="513" text-anchor="middle" font-size="11" fill="#2c5330">&#8805;41</text>
+    <text x="716" y="538" font-size="10.5" fill="#667">each stratum reported against the same term control</text>
+  </g>
+
+  <!-- ==================== bus connectors ==================== -->
+  <line x1="672" y1="138" x2="704" y2="138" stroke="#b8a25c" stroke-width="1.3" stroke-dasharray="5,4"/>
+  <line x1="672" y1="294" x2="704" y2="294" stroke="#b8a25c" stroke-width="1.3" stroke-dasharray="5,4"/>
+  <line x1="672" y1="463" x2="704" y2="463" stroke="#b8a25c" stroke-width="1.3" stroke-dasharray="5,4"/>
+  <line x1="672" y1="138" x2="672" y2="572" stroke="#b8a25c" stroke-width="1.5" stroke-dasharray="5,4"/>
+
+  <!-- ==================== into checklist ==================== -->
+  <line x1="340" y1="504" x2="340" y2="570" stroke="#555" stroke-width="1.8"/>
+  <polygon points="335,566 345,566 340,576" fill="#555"/>
+  <polygon points="667,566 677,566 672,576" fill="#555"/>
+
+  <!-- ==================== final checklist ==================== -->
+  <g id="checklist">
+    <rect x="16" y="576" width="1088" height="92" rx="12" fill="#e8f0e9" stroke="#5b8c5a" stroke-width="2"/>
+    <text x="560" y="604" text-anchor="middle" font-size="14.5" font-weight="bold" fill="#2c5330">Trustworthy EHG preterm-birth AUC</text>
+    <text x="560" y="622" text-anchor="middle" font-size="11" fill="#4a6b4d">trusted only when all four checks pass</text>
+
+    <rect x="239" y="632" width="150" height="28" rx="14" fill="#ffffff" stroke="#8fb48e" stroke-width="1.1"/>
+    <g transform="translate(253,646)"><circle cx="0" cy="0" r="8" fill="#5b8c5a"/><path d="M-3.5,0 L-1,2.8 L4,-3.4" fill="none" stroke="#ffffff" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></g>
+    <text x="268" y="650" font-size="11" fill="#2c5330">D1 features admitted</text>
+
+    <rect x="403" y="632" width="150" height="28" rx="14" fill="#ffffff" stroke="#8fb48e" stroke-width="1.1"/>
+    <g transform="translate(417,646)"><circle cx="0" cy="0" r="8" fill="#5b8c5a"/><path d="M-3.5,0 L-1,2.8 L4,-3.4" fill="none" stroke="#ffffff" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></g>
+    <text x="432" y="650" font-size="11" fill="#2c5330">D2 cohort blocked</text>
+
+    <rect x="567" y="632" width="150" height="28" rx="14" fill="#ffffff" stroke="#8fb48e" stroke-width="1.1"/>
+    <g transform="translate(581,646)"><circle cx="0" cy="0" r="8" fill="#5b8c5a"/><path d="M-3.5,0 L-1,2.8 L4,-3.4" fill="none" stroke="#ffffff" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></g>
+    <text x="596" y="650" font-size="11" fill="#2c5330">D3 baseline reported</text>
+
+    <rect x="731" y="632" width="150" height="28" rx="14" fill="#ffffff" stroke="#8fb48e" stroke-width="1.1"/>
+    <g transform="translate(745,646)"><circle cx="0" cy="0" r="8" fill="#5b8c5a"/><path d="M-3.5,0 L-1,2.8 L4,-3.4" fill="none" stroke="#ffffff" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></g>
+    <text x="760" y="650" font-size="11" fill="#2c5330">D4 strata reported</text>
+  </g>
+</svg>

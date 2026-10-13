@@ -1,0 +1,64 @@
+==============================================================================
+EHG 手工特征 · 配对判别力与诚实特征判定
+时间: 2026-09-24 15:44:07
+==============================================================================
+数据: TPEHG DB 300 + TPEHGT DS 26
+特征列: 189
+分组阈值: LEAD_SPLIT=6.0, RECT_EARLY=26.0, RECT_LATE=26.0
+通过诚实四标准: 27/189
+
+诚实特征 (folded AUC 降序):
+  rel_fwl_s3               activation  AUC=0.724 [0.612,0.823] TG=0.586 P6=0.404
+  rel_fwl_s6               activation  AUC=0.716 [0.589,0.837] TG=0.698 P6=0.470
+  peak_freq_full_s3        activation  AUC=0.703 [0.573,0.824] TG=0.663 P6=0.506
+  fwl_peak_freq_s3         activation  AUC=0.691 [0.573,0.797] TG=0.757 P6=0.564
+  peak_freq_full_s6        activation  AUC=0.691 [0.558,0.815] TG=0.754 P6=0.543
+  rel_fwl_s5               activation  AUC=0.690 [0.568,0.808] TG=0.598 P6=0.489
+  rel_fwl_s1               activation  AUC=0.681 [0.557,0.793] TG=0.550 P6=0.454
+  zcr_s6                   morphology  AUC=0.319 [0.205,0.440] TG=0.473 P6=0.561
+  fwl_peak_freq_s6         activation  AUC=0.680 [0.523,0.812] TG=0.873 P6=0.603
+  rel_fwl_s2               activation  AUC=0.674 [0.558,0.786] TG=0.704 P6=0.551
+  zcr_s3                   morphology  AUC=0.329 [0.216,0.452] TG=0.462 P6=0.567
+  fuzzyen_s3               morphology  AUC=0.332 [0.192,0.478] TG=0.426 P6=0.603
+  burst_dur_s5             activation  AUC=0.668 [0.509,0.811] TG=0.587 P6=0.515
+  fwl_peak_freq_s1         activation  AUC=0.666 [0.558,0.774] TG=0.734 P6=0.590
+  lzc_s4                   morphology  AUC=0.340 [0.217,0.465] TG=0.355 P6=0.577
+  lzc_s6                   morphology  AUC=0.340 [0.219,0.469] TG=0.473 P6=0.556
+  rel_fwl_s4               activation  AUC=0.651 [0.518,0.763] TG=0.574 P6=0.484
+  fuzzyen_s6               morphology  AUC=0.349 [0.222,0.490] TG=0.396 P6=0.614
+  fwl_peak_freq_s5         activation  AUC=0.651 [0.537,0.762] TG=0.769 P6=0.594
+  fuzzyen_s5               morphology  AUC=0.350 [0.219,0.496] TG=0.331 P6=0.590
+  fuzzyen_s4               morphology  AUC=0.356 [0.214,0.492] TG=0.254 P6=0.593
+  peak_freq_full_s1        activation  AUC=0.636 [0.514,0.763] TG=0.678 P6=0.541
+  zcr_s4                   morphology  AUC=0.365 [0.254,0.478] TG=0.438 P6=0.588
+  model_error_s4           morphology  AUC=0.366 [0.252,0.487] TG=0.379 P6=0.608
+  peak_freq_full_s5        activation  AUC=0.634 [0.513,0.754] TG=0.666 P6=0.557
+  sampen_s4                morphology  AUC=0.367 [0.241,0.495] TG=0.473 P6=0.604
+  apen_s4                  morphology  AUC=0.370 [0.243,0.499] TG=0.485 P6=0.612
+
+TOP-25 主配对 folded AUC (探索性, 未过诚实标准也列出):
+  burst_dur_s1             activation  AUC=0.730 TG=0.448 P6=0.437 honest=False c1=True c2=False c3=True c4=True
+  centroid_freq_s6         morphology  AUC=0.273 TG=0.521 P6=0.624 honest=False c1=True c2=False c3=True c4=True
+  rel_fwl_s3               activation  AUC=0.724 TG=0.586 P6=0.404 honest=True c1=True c2=True c3=True c4=True
+  median_freq_s6           morphology  AUC=0.277 TG=0.675 P6=0.562 honest=False c1=True c2=False c3=True c4=True
+  rel_fwl_s6               activation  AUC=0.716 TG=0.698 P6=0.470 honest=True c1=True c2=True c3=True c4=True
+  peak_freq_full_s3        activation  AUC=0.703 TG=0.663 P6=0.506 honest=True c1=True c2=True c3=True c4=True
+  centroid_freq_s3         morphology  AUC=0.301 TG=0.521 P6=0.625 honest=False c1=True c2=False c3=True c4=True
+  burst_dur_s6             activation  AUC=0.697 TG=0.343 P6=0.362 honest=False c1=True c2=False c3=True c4=True
+  centroid_freq_s4         morphology  AUC=0.306 TG=0.562 P6=0.619 honest=False c1=True c2=False c3=True c4=True
+  fwl_peak_freq_s3         activation  AUC=0.691 TG=0.757 P6=0.564 honest=True c1=True c2=True c3=True c4=True
+  peak_freq_full_s6        activation  AUC=0.691 TG=0.754 P6=0.543 honest=True c1=True c2=True c3=True c4=True
+  rel_fwl_s5               activation  AUC=0.690 TG=0.598 P6=0.489 honest=True c1=True c2=True c3=True c4=True
+  mse_s3                   morphology  AUC=0.312 TG=0.657 P6=0.615 honest=False c1=True c2=False c3=True c4=True
+  rel_fwl_s1               activation  AUC=0.681 TG=0.550 P6=0.454 honest=True c1=True c2=True c3=True c4=True
+  zcr_s6                   morphology  AUC=0.319 TG=0.473 P6=0.561 honest=True c1=True c2=True c3=True c4=True
+  fwl_peak_freq_s6         activation  AUC=0.680 TG=0.873 P6=0.603 honest=True c1=True c2=True c3=True c4=True
+  rel_fwl_s2               activation  AUC=0.674 TG=0.704 P6=0.551 honest=True c1=True c2=True c3=True c4=True
+  zcr_s3                   morphology  AUC=0.329 TG=0.462 P6=0.567 honest=True c1=True c2=True c3=True c4=True
+  mse_s6                   morphology  AUC=0.330 TG=0.598 P6=0.615 honest=False c1=True c2=False c3=True c4=True
+  fuzzyen_s3               morphology  AUC=0.332 TG=0.426 P6=0.603 honest=True c1=True c2=True c3=True c4=True
+  burst_dur_s5             activation  AUC=0.668 TG=0.587 P6=0.515 honest=True c1=True c2=True c3=True c4=True
+  fwl_peak_freq_s1         activation  AUC=0.666 TG=0.734 P6=0.590 honest=True c1=True c2=True c3=True c4=True
+  burst_dur_s3             activation  AUC=0.665 TG=0.438 P6=0.476 honest=False c1=True c2=False c3=True c4=True
+  mse_s4                   morphology  AUC=0.336 TG=0.509 P6=0.613 honest=False c1=True c2=False c3=True c4=True
+  lzc_s3                   morphology  AUC=0.339 TG=0.509 P6=0.567 honest=False c1=True c2=False c3=True c4=True
